@@ -165,7 +165,7 @@ class VidSrcExtractor:
             print(f"No source found for {name}, available sources:", ", ".join(list(sources.keys())))
             return None, None
 
-        req_1 = requests.get(f"https://rcp.vidsrc.me/rcp/{source}", headers={"Referer": url})
+        req_1 = requests.get(f"https://rcp.vidsrc.xyz/rcp/{source}", headers={"Referer": url})
         soup = BeautifulSoup(req_1.text, "html.parser")
 
         encoded = soup.find("div", {"id": "hidden"}).get("data-h")
@@ -175,7 +175,7 @@ class VidSrcExtractor:
         if decoded_url.startswith("//"):
             decoded_url = f"https:{decoded_url}"
 
-        req_2 = requests.get(decoded_url, allow_redirects=False, headers={"Referer": f"https://rcp.vidsrc.me/rcp/{source}"})
+        req_2 = requests.get(decoded_url, allow_redirects=False, headers={"Referer": f"https://rcp.vidsrc.xyz/rcp/{source}"})
         location = req_2.headers.get("Location")
         
         subtitle = None
@@ -183,7 +183,7 @@ class VidSrcExtractor:
             subtitle = self.fetch_best_subtitle_url(seed, language)
 
         if "vidsrc.stream" in location:
-            return self.handle_vidsrc_stream(location, f"https://rcp.vidsrc.me/rcp/{source}"), subtitle
+            return self.handle_vidsrc_stream(location, f"https://rcp.vidsrc.xyz/rcp/{source}"), subtitle
         if "2embed.cc" in location:
             print("[Warning] 2Embed does not work, this will not return anything!")
             return self.handle_2embed(location, f"https://rcp.vidsrc.xyz/rcp/{source}"), subtitle
