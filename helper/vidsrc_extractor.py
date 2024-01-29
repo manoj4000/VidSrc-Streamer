@@ -186,9 +186,9 @@ class VidSrcExtractor:
             return self.handle_vidsrc_stream(location, f"https://rcp.vidsrc.me/rcp/{source}"), subtitle
         if "2embed.cc" in location:
             print("[Warning] 2Embed does not work, this will not return anything!")
-            return self.handle_2embed(location, f"https://rcp.vidsrc.me/rcp/{source}"), subtitle
+            return self.handle_2embed(location, f"https://rcp.vidsrc.xyz/rcp/{source}"), subtitle
         if "multiembed.mov" in location:
-            return self.handle_multiembed(location, f"https://rcp.vidsrc.me/rcp/{source}"), subtitle
+            return self.handle_multiembed(location, f"https://rcp.vidsrc.xyz/rcp/{source}"), subtitle
 
 
 if __name__ == "__main__":
